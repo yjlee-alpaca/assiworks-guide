@@ -9,7 +9,8 @@
 - `usage.html` : 사용 가이드. 유닛 만들기, 앱과 팀, 자료와 연결, 예약과 기록, 팀원 대화형 화면
 
 같은 주소로 나갑니다. 화면 가이드는 https://assiworks-guide.vercel.app,
-사용 가이드는 https://assiworks-guide.vercel.app/usage.html 입니다. 두 페이지는 서로 링크로 이어져 있습니다.
+사용 가이드는 https://assiworks-guide.vercel.app/usage 입니다. 두 페이지는 서로 링크로 이어져 있습니다.
+`vercel.json` 의 cleanUrls 설정으로 주소 끝의 .html 을 뺍니다. /usage.html 로 들어와도 /usage 로 넘어갑니다.
 캡처 이미지는 각 파일 안에 들어 있어서 따로 챙길 자료가 없습니다.
 
 ## 캡처에는 가명만 씁니다
@@ -22,7 +23,7 @@
 
 1. `index.html` 또는 `usage.html` 을 고칩니다
 2. 커밋하고 푸시합니다
-3. 푸시하면 배포 주소에 반영됩니다
+3. 푸시하면 배포 주소에 반영됩니다. 2026-10-15에는 푸시로 배포가 되지 않아 `vercel deploy --prod` 로 직접 올렸습니다
 
 예전에는 명령줄로 직접 올렸습니다. 2026년 9월 28일에 이 저장소를 배포와 연결했고,
 그때부터는 푸시가 곧 배포입니다. 올리는 사람이 누구든 같은 판이 나갑니다.
