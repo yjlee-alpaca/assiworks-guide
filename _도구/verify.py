@@ -76,6 +76,8 @@ for (const f of files) {
       const W = document.documentElement.clientWidth
       const over = [...document.querySelectorAll('body *')].filter(e => {
         if (e.closest('table,pre,.tabs,nav,[role=tablist]')) return false
+        // svg 안의 도형은 svg 상자 밖으로 나가도 그 상자에서 잘린다. 넘침이 아니다
+        if (e.ownerSVGElement) return false
         const r = e.getBoundingClientRect(); return r.width > 0 && r.right > W + 1
       }).slice(0, 3).map(e => e.tagName + '.' + (e.className || '') + ' ' + (e.textContent || '').trim().slice(0, 30))
       return { broken, over, scroll: document.documentElement.scrollWidth > W + 1 }
