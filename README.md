@@ -11,8 +11,7 @@
 
 같은 주소로 나갑니다. 화면 가이드는 https://assiworks-guide.vercel.app,
 사용 가이드는 https://assiworks-guide.vercel.app/usage,
-소개 페이지는 https://assiworks-guide.vercel.app/intro 입니다. 화면 가이드와 사용 가이드는 서로 링크로 이어져 있고,
-소개 페이지에서는 두 가이드로 가는 링크가 있습니다.
+소개 페이지는 https://assiworks-guide.vercel.app/intro 입니다. 세 페이지는 서로 링크로 이어져 있습니다. 두 가이드는 맨 위 작은 머리글(어시웍스 소개 · 화면 가이드 · 사용 가이드)에서 넘어갑니다.
 소개 페이지 원본은 Claude 디자인 캔버스(어시웍스 소개)이고, intro.html 은 그것을 한 파일로 묶은 것입니다.
 `vercel.json` 의 cleanUrls 설정으로 주소 끝의 .html 을 뺍니다. /usage.html 로 들어와도 /usage 로 넘어갑니다.
 캡처 이미지는 각 파일 안에 들어 있어서 따로 챙길 자료가 없습니다.
