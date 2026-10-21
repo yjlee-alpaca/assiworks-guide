@@ -3,16 +3,19 @@
 권한별 메뉴와 초기 세팅 순서를 담은 안내 문서입니다.
 배포 주소는 https://assiworks-guide.vercel.app 입니다.
 
-## 파일은 세 개입니다
+## 파일은 네 개입니다
 
 - `index.html` : 화면 가이드. 권한별 메뉴와 신규 고객사 세팅 순서
 - `usage.html` : 사용 가이드. 유닛 만들기, 앱과 팀, 자료와 연결, 예약과 기록, 팀원 대화형 화면
-- `intro.html` : 소개 페이지. 어시웍스를 처음 보는 사람에게 보여 주는 랜딩
+- `business.html` : 조직용 소개 페이지. 관리자와 팀원, 팀별 권한까지 담은 랜딩
+- `personal.html` : 개인용 소개 페이지. 조직용에서 팀 관리 내용을 빼고, 혼자 Admin에서 만들어 쓰거나 대화형 화면으로 쓰는 흐름
 
 같은 주소로 나갑니다. 화면 가이드는 https://assiworks-guide.vercel.app,
 사용 가이드는 https://assiworks-guide.vercel.app/usage,
-소개 페이지는 https://assiworks-guide.vercel.app/intro 입니다. 세 페이지는 서로 링크로 이어져 있습니다. 두 가이드는 맨 위 작은 머리글(어시웍스 소개 · 화면 가이드 · 사용 가이드)에서 넘어갑니다.
-소개 페이지 원본은 Claude 디자인 캔버스(어시웍스 소개)이고, intro.html 은 그것을 한 파일로 묶은 것입니다.
+소개 페이지는 https://assiworks-guide.vercel.app/business 와 /personal 입니다. 두 소개 페이지는 머리줄의 조직 · 개인 스위치로 오갑니다.
+두 가이드는 맨 위 작은 머리글(어시웍스 소개 · 화면 가이드 · 사용 가이드)에서 넘어가고, 어시웍스 소개는 /business 로 갑니다.
+예전 주소 /intro 는 `vercel.json` 에서 /business 로 넘깁니다.
+소개 페이지 원본은 Claude 디자인 캔버스(어시웍스 소개)입니다. 조직용 원본 하나에서 개인용을 문구 치환으로 만들고, 각각을 한 파일로 묶어 여기에 둡니다.
 `vercel.json` 의 cleanUrls 설정으로 주소 끝의 .html 을 뺍니다. /usage.html 로 들어와도 /usage 로 넘어갑니다.
 캡처 이미지는 각 파일 안에 들어 있어서 따로 챙길 자료가 없습니다.
 
