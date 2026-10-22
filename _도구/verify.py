@@ -8,7 +8,7 @@
   2 기관 표현    특정 기관이 드러나는 지명·업무 이름이 남아 있는지
   3 표기         한글 문장의 em dash, 겹낫표
   4 글 너비      본문에 max-width(ch) 제한이 다시 들어갔는지
-  5 탭           사용 가이드 탭 일곱 개가 다 있는지
+  5 탭           사용 가이드 목차 일곱 개가 다 있는지
   6 화면         브라우저로 열어 콘솔 오류, 깨진 이미지, 가로 넘침(375 · 1280)
 
 6은 playwright-core 가 있어야 돈다. 없으면 건너뛰었다고 적고 실패로 친다.
@@ -50,7 +50,8 @@ def 정적(f):
     if re.search(r'max-width:\s*\d+ch', css): 문제.append('4 본문 글 너비 제한(max-width: ch)')
     if os.path.basename(f).startswith('usage'):
         for w in 탭:
-            if not re.search(r'role="tab"[^>]*>(?:(?!</a>).)*' + re.escape(w), src, flags=re.S):
+            # 2026-10-22 위쪽 탭 줄을 왼쪽 목차(data-tab 링크)로 바꿨다. 둘 다 받는다
+            if not re.search(r'(?:role="tab"|data-tab)[^>]*>(?:(?!</a>).)*' + re.escape(w), src, flags=re.S):
                 문제.append(f'5 탭 없음 "{w}"')
     return 문제
 

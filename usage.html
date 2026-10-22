@@ -28,27 +28,47 @@
 body{margin:0;background:var(--paper);color:var(--ink);
  font-family:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
  font-size:16px;line-height:1.74;letter-spacing:-.003em;-webkit-font-smoothing:antialiased}
-.wrap{max-width:880px;margin:0 auto;padding:0 24px 96px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px 96px}
 header.top{padding:66px 0 30px}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin:0 0 13px}
 .eyebrow a{color:inherit;text-decoration:none}
 .eyebrow a:hover{text-decoration:underline}
 h1{font-size:clamp(31px,5.6vw,46px);line-height:1.14;letter-spacing:-.03em;font-weight:800;margin:0 0 14px;text-wrap:balance}
 .lede{font-size:17.5px;color:var(--ink-2);margin:0}
-nav.tabs{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);
- backdrop-filter:saturate(1.7) blur(10px);border-bottom:1px solid var(--line);margin-bottom:40px}
-nav.tabs ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
-nav.tabs ul::-webkit-scrollbar{display:none}
-nav.tabs a{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;font-size:14px;font-weight:650;color:var(--ink-3);text-decoration:none;padding:7px 13px;border-radius:8px}
-nav.tabs a:hover{color:var(--ink);background:var(--surface-2)}
-nav.tabs a[aria-selected="true"]{color:var(--accent);background:var(--accent-soft)}
-nav.tabs a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.role{font-size:10.5px;font-weight:800;letter-spacing:.04em;padding:2px 6px;border-radius:5px}
-.role.a{color:var(--admin);background:var(--admin-bg)}
-.role.u{color:var(--user);background:var(--user-bg)}
+/* 목차. 데스크톱은 왼쪽에 따라 내려오고, 좁은 화면은 위에 붙는 펼침 버튼 */
+.layout{display:grid;grid-template-columns:216px minmax(0,1fr);gap:56px;align-items:start}
+.main{min-width:0;max-width:820px}
+.side{position:sticky;top:24px;max-height:calc(100vh - 48px);overflow:auto;padding:2px 0 24px;scrollbar-width:thin}
+.side-toggle{display:none}
+.side-list a[data-tab]{display:block;padding:7px 12px;border-radius:8px;font-size:14.5px;font-weight:600;line-height:1.45;color:var(--ink-2);text-decoration:none}
+.side-list a[data-tab]:hover{background:var(--surface-2);color:var(--ink)}
+.side-list a[data-tab][aria-current="page"]{background:var(--accent-soft);color:var(--accent)}
+.side-list a:focus-visible,.side-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.grp{margin:20px 12px 6px;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--ink-3)}
+.sub{list-style:none;margin:4px 0 10px 18px;padding:0 0 0 10px;border-left:1px solid var(--line)}
+.sub a{display:block;padding:4px 8px;font-size:13.5px;line-height:1.45;color:var(--ink-3);text-decoration:none;border-radius:6px}
+.sub a:hover{color:var(--ink)}
+.sub a.on{color:var(--accent);font-weight:600}
+@media (max-width:1000px){
+ .layout{grid-template-columns:1fr;gap:0}
+ .main{max-width:none}
+ .side{top:0;z-index:20;max-height:none;overflow:visible;margin:0 -24px 34px;padding:10px 24px;
+  background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:saturate(1.6) blur(10px);border-bottom:1px solid var(--line)}
+ .side-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:10px;font:inherit;font-size:15px;font-weight:650;color:var(--ink);
+  background:var(--surface);border:1px solid var(--line-2);border-radius:10px;padding:9px 14px;cursor:pointer;text-align:left}
+ .side-toggle small{font-size:12px;font-weight:700;color:var(--ink-3);margin-right:8px}
+ .side-toggle svg{flex:none;transition:transform .15s}
+ .side.open .side-toggle svg{transform:rotate(180deg)}
+ .side-list{display:none;position:absolute;left:24px;right:24px;top:calc(100% - 4px);background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  box-shadow:var(--shadow);padding:6px 8px 10px;max-height:70vh;overflow:auto}
+ .side.open .side-list{display:block}
+ .grp{margin:14px 12px 4px}
+ .sub{display:none}
+}
 .panel[hidden]{display:none}
 .panel > .intro{color:var(--ink-2);margin:0 0 34px}
-section{margin:0 0 64px;scroll-margin-top:72px}
+section{margin:0 0 64px;scroll-margin-top:24px}
+@media (max-width:1000px){section{scroll-margin-top:80px}}
 h2{font-size:25px;font-weight:800;letter-spacing:-.022em;margin:0 0 12px;text-wrap:balance}
 h3{font-size:18px;font-weight:750;letter-spacing:-.014em;margin:30px 0 8px}
 p{margin:0 0 12px}
@@ -86,7 +106,7 @@ footer{border-top:1px solid var(--line);padding-top:22px;margin-top:30px;font-si
 footer a{color:var(--accent)}
 #lb{position:fixed;inset:0;background:rgba(11,10,17,.93);display:none;z-index:99;align-items:center;justify-content:center;padding:26px;cursor:zoom-out}
 #lb.on{display:flex} #lb img{max-width:100%;max-height:100%;border-radius:8px}
-@media (max-width:600px){.wrap{padding:0 16px 72px}header.top{padding:44px 0 24px}td:first-child{white-space:normal}}
+@media (max-width:600px){.side{margin:0 -16px 28px;padding:10px 16px}.side-list{left:16px;right:16px}.wrap{padding:0 16px 72px}header.top{padding:44px 0 24px}td:first-child{white-space:normal}}
 </style>
 </head>
 <body>
@@ -94,18 +114,25 @@ footer a{color:var(--accent)}
 <header class="top">
 <p class="eyebrow"><a href="business">어시웍스 소개</a> · <a href="./">화면 가이드</a> · 사용 가이드</p>
 <h1>어시웍스 사용 가이드</h1>
-<p class="lede">관리자가 유닛을 만들어 팀에 제공하는 방법과 팀원이 대화형 앱에서 업무를 요청하는 방법을 안내합니다. 지도를 함께 사용하는 앱은 어시지오(지도) 사용하기 탭에서 안내합니다.</p>
+<p class="lede">관리자가 유닛을 만들어 팀에 제공하는 방법과 팀원이 대화형 앱에서 업무를 요청하는 방법을 안내합니다. 지도를 함께 사용하는 앱은 <a href="#geo">어시지오(지도) 사용하기</a>에서 안내합니다.</p>
 </header>
 
-<nav class="tabs" aria-label="가이드 탭"><ul role="tablist">
-<li><a href="#start" role="tab">시작하기</a></li>
-<li><a href="#units" role="tab"><span class="role a">관리자</span>유닛 만들기</a></li>
-<li><a href="#apps" role="tab"><span class="role a">관리자</span>앱과 팀</a></li>
-<li><a href="#resources" role="tab"><span class="role a">관리자</span>자료와 연결</a></li>
-<li><a href="#records" role="tab"><span class="role a">관리자</span>예약과 기록</a></li>
-<li><a href="#member" role="tab"><span class="role u">팀원</span>대화형 화면 사용하기</a></li>
-<li><a href="#geo" role="tab"><span class="role u">팀원</span>어시지오(지도) 사용하기</a></li>
-</ul></nav>
+<div class="layout">
+<nav class="side" aria-label="가이드 목차">
+<button class="side-toggle" type="button" aria-expanded="false" aria-controls="side-list"><span><small>목차</small><span class="cur">시작하기</span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+<div class="side-list" id="side-list">
+<a href="#start" data-tab>시작하기</a>
+<p class="grp">관리자</p>
+<a href="#units" data-tab>유닛 만들기</a>
+<a href="#apps" data-tab>앱과 팀</a>
+<a href="#resources" data-tab>자료와 연결</a>
+<a href="#records" data-tab>예약과 기록</a>
+<p class="grp">팀원</p>
+<a href="#member" data-tab>대화형 화면 사용하기</a>
+<a href="#geo" data-tab>어시지오(지도) 사용하기</a>
+</div>
+</nav>
+<main class="main">
 
 <!-- ───────────── 시작하기 ───────────── -->
 <div class="panel" id="start" role="tabpanel">
@@ -674,7 +701,7 @@ footer a{color:var(--accent)}
 
 <!-- ───────────── 팀원: 어시지오 ───────────── -->
 <div class="panel" id="geo" role="tabpanel" hidden>
-<p class="intro">지도를 함께 쓰는 앱(대화형 + 지도)에서 분석을 요청하고 결과를 지도에서 확인하는 방법입니다. 예약, 지난 대화, 파일 올리기, 알림은 <a href="#member">대화형 화면 사용하기</a>와 같고, 이 탭에서는 지도와 관련된 사용 방법을 안내합니다.</p>
+<p class="intro">지도를 함께 쓰는 앱(대화형 + 지도)에서 분석을 요청하고 결과를 지도에서 확인하는 방법입니다. 예약, 지난 대화, 파일 올리기, 알림은 <a href="#member">대화형 화면 사용하기</a>와 같고, 여기서는 지도와 관련된 사용 방법을 안내합니다.</p>
 
 <section id="geo-layout">
 <h2>화면 구성</h2>
@@ -836,25 +863,52 @@ footer a{color:var(--accent)}
 </div>
 
 <footer>화면은 시안 기준이며 실제 서비스 화면과 다를 수 있습니다. 이미지를 누르면 크게 볼 수 있습니다. 권한별 메뉴 구성과 신규 고객사 초기 설정 순서는 <a href="./">화면 가이드</a>에서 확인합니다.</footer>
+</main>
+</div>
 </div>
 <div id="lb"><img alt=""></div>
 <script>
 (function(){
-  var tabs=[].slice.call(document.querySelectorAll('nav.tabs a'));
+  var side=document.querySelector('nav.side'),toggle=side.querySelector('.side-toggle'),cur=side.querySelector('.cur');
+  var tabs=[].slice.call(side.querySelectorAll('a[data-tab]'));
   var panels=[].slice.call(document.querySelectorAll('.panel'));
+  var spy=null;
   function panelOf(id){
     var el=document.getElementById(id);
     while(el&&!(el.classList&&el.classList.contains('panel')))el=el.parentElement;
     return el;
   }
+  function setOpen(v){side.classList.toggle('open',v);toggle.setAttribute('aria-expanded',v?'true':'false')}
+  toggle.addEventListener('click',function(){setOpen(!side.classList.contains('open'))});
+  document.addEventListener('click',function(e){if(!side.contains(e.target))setOpen(false)});
+  /* 지금 탭 아래에 그 탭의 절 목록을 펼친다 */
+  function buildSub(p,a){
+    side.querySelectorAll('.sub').forEach(function(u){u.remove()});
+    var secs=[].slice.call(p.querySelectorAll('section')).filter(function(x){return x.querySelector('h2')});
+    var ul=document.createElement('ul');ul.className='sub';
+    secs.forEach(function(x,i){
+      if(!x.id)x.id=p.id+'-'+(i+1);
+      var li=document.createElement('li'),l=document.createElement('a');
+      l.href='#'+x.id;l.textContent=x.querySelector('h2').textContent;li.appendChild(l);ul.appendChild(li);
+    });
+    a.insertAdjacentElement('afterend',ul);
+    if(spy)spy.disconnect();
+    if('IntersectionObserver' in window){
+      var links=[].slice.call(ul.querySelectorAll('a'));
+      spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'0px 0px -70% 0px'});
+      secs.forEach(function(x){spy.observe(x)});
+    }
+  }
   function show(hash,scroll){
     var id=(hash||'').replace('#','')||'start';
     var p=panelOf(id)||panels[0];
+    var changed=p.hidden;
     panels.forEach(function(x){x.hidden=x!==p});
-    tabs.forEach(function(a){var on=a.getAttribute('href')==='#'+p.id;a.setAttribute('aria-selected',on?'true':'false');if(on&&a.scrollIntoView)a.scrollIntoView({block:'nearest',inline:'nearest'})});
+    tabs.forEach(function(a){var on=a.getAttribute('href')==='#'+p.id;if(on){a.setAttribute('aria-current','page');cur.textContent=a.textContent;buildSub(p,a)}else a.removeAttribute('aria-current')});
+    setOpen(false);
     if(scroll){
       var t=document.getElementById(id);
-      if(t&&t!==p)t.scrollIntoView();else window.scrollTo(0,document.querySelector('nav.tabs').offsetTop);
+      if(t&&t!==p)t.scrollIntoView();else if(changed||t===p)window.scrollTo(0,Math.max(0,document.querySelector('.layout').offsetTop-8));
     }
   }
   window.addEventListener('hashchange',function(){show(location.hash,true)});
