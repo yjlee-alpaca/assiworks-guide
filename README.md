@@ -1,19 +1,21 @@
-# 어시웍스 화면 가이드
+# 어시웍스 구조 및 개념 가이드
 
-권한별 메뉴와 초기 세팅 순서를 담은 안내 문서입니다.
+어시웍스의 구조와 용어, 권한별 메뉴, 초기 세팅 순서를 담은 안내 문서입니다.
+2026-10-23에 이름을 화면 가이드에서 구조 및 개념 가이드로 바꾸고, 앞쪽에 개념 탭(전체 구조, 권한, 일이 흐르는 순서, 용어 정리)을 더했습니다.
 배포 주소는 https://assiworks-guide.vercel.app 입니다.
 
-## 파일은 네 개입니다
+## 페이지는 다섯 개입니다
 
-- `index.html` : 화면 가이드. 권한별 메뉴와 신규 고객사 세팅 순서
+- `index.html` : 구조 및 개념 가이드. 운영사·고객사·팀·개인 공간의 관계, 용어, 권한별 메뉴, 신규 고객사 세팅 순서. 사용 가이드처럼 왼쪽 목차로 나뉩니다
 - `usage.html` : 사용 가이드. 유닛 만들기, 앱과 팀, 자료와 연결, 예약과 기록, 팀원 대화형 화면
 - `business.html` : 조직용 소개 페이지. 관리자와 팀원, 팀별 권한까지 담은 랜딩
 - `personal.html` : 개인용 소개 페이지. 조직용에서 팀 관리 내용을 빼고, 혼자 Admin에서 만들어 쓰거나 대화형 화면으로 쓰는 흐름
+- `releases.html` : 릴리즈 노트. 작업본은 `_도구/릴리즈`
 
-같은 주소로 나갑니다. 화면 가이드는 https://assiworks-guide.vercel.app,
+같은 주소로 나갑니다. 구조 및 개념 가이드는 https://assiworks-guide.vercel.app,
 사용 가이드는 https://assiworks-guide.vercel.app/usage,
 소개 페이지는 https://assiworks-guide.vercel.app/business 와 /personal 입니다. 두 소개 페이지는 머리줄의 조직 · 개인 스위치로 오갑니다.
-두 가이드는 맨 위 작은 머리글(어시웍스 소개 · 화면 가이드 · 사용 가이드)에서 넘어가고, 어시웍스 소개는 /business 로 갑니다.
+두 가이드는 맨 위 작은 머리글(어시웍스 소개 · 구조 및 개념 가이드 · 사용 가이드)에서 넘어가고, 어시웍스 소개는 /business 로 갑니다.
 예전 주소 /intro 는 `vercel.json` 에서 /business 로 넘깁니다.
 소개 페이지 원본은 Claude 디자인 캔버스(어시웍스 소개)입니다. 조직용 원본 하나에서 개인용을 문구 치환으로 만들고, 각각을 한 파일로 묶어 여기에 둡니다.
 `vercel.json` 의 cleanUrls 설정으로 주소 끝의 .html 을 뺍니다. /usage.html 로 들어와도 /usage 로 넘어갑니다.
@@ -27,7 +29,8 @@
 
 ## 고치는 방법
 
-1. `index.html` 또는 `usage.html` 을 고칩니다
+1. `index.html` 과 `usage.html` 은 손으로 고치지 않습니다. `_도구/가이드/index_src.html`, `usage_src.html` 을 고치고 `python3 _도구/가이드/build.py` 를 돌립니다. 캡처는 `_도구/가이드/img` 에 webp 로 있습니다
+   넘기기 전에 `python3 _도구/verify.py index.html usage.html` 을 돌립니다
 2. 커밋하고 푸시합니다
 3. 푸시하면 배포 주소에 반영됩니다. 2026-10-15에는 푸시로 배포가 되지 않아 `vercel deploy --prod` 로 직접 올렸습니다
 
