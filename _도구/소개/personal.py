@@ -105,7 +105,7 @@ left = [w for w in ('점검', '난간', '파손', '시설', '김철수', '이영
 assert not left, left
 # 마무리
 rep('팀 업무 하나로<br>먼저 시작해 보세요', '내 업무 하나로<br>먼저 시작해 보세요')
-rep('매주 반복되는 업무 하나를 알려 주시면, 어떤 유닛으로 나눠 만들 수 있는지 함께 살펴보겠습니다.', '매주 반복하는 일을 하나 골라 유닛으로 만들어 보세요. 처음부터 따라 하는 순서는 사용 가이드에 있습니다.')
+rep('지금 반복하고 있는 업무 하나를 알려 주세요. 어시웍스로 자동화하는 방법을 함께 찾아 드립니다.', '매주 반복하는 일을 하나 골라 유닛으로 만들어 보세요. 처음부터 따라 하는 순서는 사용 가이드에 있습니다.')
 rep('<a class="btn btn-p" href="mailto:contact@aifactory.page" style="margin-top:8px">도입 상담 신청 <span aria-hidden="true">→</span></a>',
     '<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px"><a class="btn btn-p" href="https://assiworks.aifactory.space">시작하기 <span aria-hidden="true">→</span></a><a class="btn btn-g" href="https://assiworks-guide.vercel.app/usage" style="background:#FFFFFF">사용 가이드 보기</a></div>')
 # 문의 메일: 개인용은 사용 문의만 남긴다
