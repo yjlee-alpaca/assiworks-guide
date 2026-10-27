@@ -30,6 +30,8 @@ PW = os.environ.get('PLAYWRIGHT_CORE',
 def 글자(html):
     """보이는 글자만. 스타일, 스크립트, base64 이미지는 뺀다"""
     t = re.sub(r'<(style|script)[^>]*>.*?</\1>', ' ', html, flags=re.S)
+    # 약관 모달은 법률 원문 그대로라(「」 법령명 등) 표기 검사에서 뺀다
+    t = re.sub(r'<dialog class="legal-dlg".*?</dialog>', ' ', t, flags=re.S)
     t = re.sub(r'data:[^"\')\s]+', ' ', t)
     t = re.sub(r'<[^>]+>', ' ', t)
     import html as H

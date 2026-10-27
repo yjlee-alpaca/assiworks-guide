@@ -1,5 +1,7 @@
 import re, base64, sys
 import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from legal import modal as legal_modal
 src = open(os.environ.get('SRC','project/Main.dc.html'), encoding='utf-8').read()
 A = '/Users/yeonjae/dev/New-assi-works-front/src/assets/'
 blobs = {
@@ -25,7 +27,8 @@ out = f'''<!doctype html>
 html{{scroll-behavior:smooth}}
 </style>
 </head>
-<body>{body}{SCROLL_JS}</body>
+<body>{body}{SCROLL_JS}
+{legal_modal()}</body>
 </html>
 '''
 for bid,(path,mime) in blobs.items():
