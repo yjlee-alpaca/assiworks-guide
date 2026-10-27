@@ -17,6 +17,11 @@ h1,h2,h3{text-wrap:balance}
 .wrap{max-width:1200px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
 .sec{padding-block:140px;overflow-x:clip}
 .nav-links{display:flex;gap:32px}
+html{scroll-padding-top:88px}
+.hdr-pages{display:flex;align-items:center;gap:24px}
+.hdr-sub{display:none}
+@media (max-width:1100px){.nav-links{display:none}}
+@media (max-width:760px){.hdr-pages{display:none}.hdr-sub{display:flex;justify-content:center;gap:20px;padding-block:0 12px}.hdr-sub a{font-size:13px}}
 .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .g4.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
@@ -138,7 +143,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(112,46,255,0.45);out
 <div style="width:100%;background:#FFFFFF">
 
 <!-- ═══ 상단 바 ═══ -->
-<header style="background:#FFFFFF;border-bottom:1px solid #F0F0F2">
+<header style="position:sticky;top:0;z-index:50;background:#FFFFFF;border-bottom:1px solid #F0F0F2">
 <div class="wrap hdr" style="height:72px;display:flex;align-items:center;gap:40px">
 <a href="#top" aria-label="어시웍스 처음으로" style="display:flex;align-items:center"><img src="/_blob/c7f7b7731a71ce37a9e932fbd1b4dee6" alt="AssiWorks" class="hdr-logo" style="height:21px;width:auto;display:block"></a>
 <div class="seg" role="group" aria-label="소개 대상" style="display:flex;gap:2px;padding:3px;border-radius:999px;background:#F4F4F5;font-size:13px;font-weight:600;flex:none"><a href="https://assiworks-guide.vercel.app/business" aria-current="page" style="padding:5px 12px;border-radius:999px;background:#FFFFFF;color:#1B1B1B;text-decoration:none;box-shadow:0 1px 2px rgba(27,27,27,0.08)">조직</a><a href="https://assiworks-guide.vercel.app/personal" style="padding:5px 12px;border-radius:999px;color:#71717B;text-decoration:none">개인</a></div>
@@ -148,11 +153,20 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(112,46,255,0.45);out
 <a class="navlink" href="#schedule">예약과 알림</a>
 <a class="navlink" href="#geo">어시지오</a>
 </nav>
-<div style="display:flex;gap:8px;margin-left:auto">
-<a class="btn btn-g hide-sm" href="https://assiworks.aifactory.space" style="height:40px;font-size:15px;padding:0 16px">로그인</a>
+<div style="display:flex;align-items:center;gap:28px;margin-left:auto">
+<nav class="hdr-pages" aria-label="가이드">
+<a class="navlink" href="https://assiworks-guide.vercel.app/">구조 및 개념 가이드</a>
+<a class="navlink" href="https://assiworks-guide.vercel.app/usage">사용 가이드</a>
+<a class="navlink" href="https://assiworks-guide.vercel.app/releases">릴리즈 노트</a>
+</nav>
 <a class="btn btn-k" href="#contact" style="height:40px;font-size:15px;padding:0 18px">도입 문의</a>
 </div>
 </div>
+<nav class="wrap hdr-sub" aria-label="가이드">
+<a class="navlink" href="https://assiworks-guide.vercel.app/">구조 및 개념 가이드</a>
+<a class="navlink" href="https://assiworks-guide.vercel.app/usage">사용 가이드</a>
+<a class="navlink" href="https://assiworks-guide.vercel.app/releases">릴리즈 노트</a>
+</nav>
 </header>
 
 <!-- ═══ 히어로 ═══ -->
@@ -487,8 +501,11 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(112,46,255,0.45);out
 <div class="wrap" style="padding-block:40px;display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center">
 <img src="/_blob/c7f7b7731a71ce37a9e932fbd1b4dee6" alt="AssiWorks" style="height:18px;width:auto;display:block">
 <nav aria-label="하단 메뉴" style="display:flex;flex-wrap:wrap;gap:24px">
-<a class="navlink" href="https://assiworks-guide.vercel.app/usage" style="font-size:14px">사용 가이드</a>
 <a class="navlink" href="https://assiworks-guide.vercel.app/" style="font-size:14px">구조 및 개념 가이드</a>
+<a class="navlink" href="https://assiworks-guide.vercel.app/usage" style="font-size:14px">사용 가이드</a>
+<a class="navlink" href="https://assiworks-guide.vercel.app/releases" style="font-size:14px">릴리즈 노트</a>
+<a class="navlink" href="https://assiworks.aifactory.page/terms" style="font-size:14px">이용약관</a>
+<a class="navlink" href="https://assiworks.aifactory.page/privacy" style="font-size:14px;font-weight:600">개인정보처리방침</a>
 </nav>
 <span style="margin-left:auto;font-size:13px;color:#71717B">© 2026 AIFactory</span>
 </div>

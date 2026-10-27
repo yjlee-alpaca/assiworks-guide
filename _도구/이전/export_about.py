@@ -26,6 +26,7 @@ LINKS = {
     ('business', None): '/',
     ('/personal', None): '/personal',
     ('/usage', None): '/guide/usage',
+    ('/releases', None): '/releases',
     ('usage', None): '/guide/usage',
     ('./', '구조 및 개념 가이드'): '/guide',
     ('/', '구조 및 개념 가이드'): '/guide',

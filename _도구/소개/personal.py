@@ -12,7 +12,6 @@ rep('<title>어시웍스 소개</title>', '<title>어시웍스 개인용 소개<
 rep('<a href="https://assiworks-guide.vercel.app/business" aria-current="page" style="padding:5px 12px;border-radius:999px;background:#FFFFFF;color:#1B1B1B;text-decoration:none;box-shadow:0 1px 2px rgba(27,27,27,0.08)">조직</a><a href="https://assiworks-guide.vercel.app/personal" style="padding:5px 12px;border-radius:999px;color:#71717B;text-decoration:none">개인</a>',
     '<a href="https://assiworks-guide.vercel.app/business" style="padding:5px 12px;border-radius:999px;color:#71717B;text-decoration:none">조직</a><a href="https://assiworks-guide.vercel.app/personal" aria-current="page" style="padding:5px 12px;border-radius:999px;background:#FFFFFF;color:#1B1B1B;text-decoration:none;box-shadow:0 1px 2px rgba(27,27,27,0.08)">개인</a>')
 rep('<a class="navlink" href="#roles">앱과 팀</a>', '<a class="navlink" href="#roles">만들고 쓰기</a>')
-rep('<a class="btn btn-g hide-sm" href="https://assiworks.aifactory.space" style="height:40px;font-size:15px;padding:0 16px">로그인</a>\n', '')
 rep('<a class="btn btn-k" href="#contact" style="height:40px;font-size:15px;padding:0 18px">도입 문의</a>',
     '<a class="btn btn-k" href="https://assiworks.aifactory.space" style="height:40px;font-size:15px;padding:0 18px">시작하기</a>')
 # 첫 화면
