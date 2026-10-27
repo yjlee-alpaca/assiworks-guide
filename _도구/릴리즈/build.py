@@ -11,11 +11,14 @@ import base64, io, os, re
 from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+import sys; sys.path.insert(0, os.path.join(HERE, '..', '공통'))
+from site_header import fill as site_header
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..'))
 src = open(os.path.join(HERE, 'releases_src.html'), encoding='utf-8').read()
 usage = open(os.path.join(ROOT, 'business.html'), encoding='utf-8').read()
 font = re.search(r'@font-face\{[^}]*\}', usage).group(0)
 src = src.replace('@@FONT@@', font)
+src = site_header(src, '1120px')
 
 def img(m):
     name, cap = m.group(1), m.group(2)

@@ -37,8 +37,8 @@ header.top{padding:66px 0 30px}
 .eyebrow a:hover{text-decoration:underline}
 h1{font-size:clamp(31px,5.6vw,48px);line-height:1.12;letter-spacing:-.03em;font-weight:800;margin:0 0 14px;text-wrap:balance}
 .lede{font-size:18px;color:var(--ink-2);margin:0}
-section{margin:0 0 64px;scroll-margin-top:24px}
-@media (max-width:1000px){section{scroll-margin-top:80px}}
+section{margin:0 0 64px;scroll-margin-top:calc(var(--hdr-h,0px) + 24px)}
+@media (max-width:1000px){section{scroll-margin-top:calc(var(--hdr-h,0px) + 80px)}}
 h2{font-size:26px;font-weight:800;letter-spacing:-.022em;margin:0 0 8px;text-wrap:balance}
 .sec-note{color:var(--ink-2);margin:0 0 30px;font-size:15.5px}
 /* 세팅 순서 */
@@ -79,7 +79,7 @@ h2{font-size:26px;font-weight:800;letter-spacing:-.022em;margin:0 0 8px;text-wra
 /* 목차. 데스크톱은 왼쪽에 따라 내려오고, 좁은 화면은 위에 붙는 펼침 버튼 */
 .layout{display:grid;grid-template-columns:216px minmax(0,1fr);gap:56px;align-items:start}
 .main{min-width:0;max-width:820px}
-.side{position:sticky;top:24px;max-height:calc(100vh - 48px);overflow:auto;padding:2px 0 24px;scrollbar-width:thin}
+.side{position:sticky;top:calc(var(--hdr-h,0px) + 24px);max-height:calc(100vh - var(--hdr-h,0px) - 48px);overflow:auto;padding:2px 0 24px;scrollbar-width:thin}
 .side-toggle{display:none}
 .side-list a[data-tab]{display:block;padding:7px 12px;border-radius:8px;font-size:14.5px;font-weight:600;line-height:1.45;color:var(--ink-2);text-decoration:none}
 .side-list a[data-tab]:hover{background:var(--surface-2);color:var(--ink)}
@@ -93,7 +93,7 @@ h2{font-size:26px;font-weight:800;letter-spacing:-.022em;margin:0 0 8px;text-wra
 @media (max-width:1000px){
  .layout{grid-template-columns:1fr;gap:0}
  .main{max-width:none}
- .side{top:0;z-index:20;max-height:none;overflow:visible;margin:0 -24px 34px;padding:10px 24px;
+ .side{top:var(--hdr-h,0px);z-index:20;max-height:none;overflow:visible;margin:0 -24px 34px;padding:10px 24px;
   background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:saturate(1.6) blur(10px);border-bottom:1px solid var(--line)}
  .side-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:10px;font:inherit;font-size:15px;font-weight:650;color:var(--ink);
   background:var(--surface);border:1px solid var(--line-2);border-radius:10px;padding:9px 14px;cursor:pointer;text-align:left}
@@ -171,6 +171,61 @@ footer a{color:var(--accent)}
 </style>
 </head>
 <body>
+<style>
+:root{--hdr-h:65px}
+@media (max-width:760px){:root{--hdr-h:101px}}
+html{scroll-padding-top:calc(var(--hdr-h) + 16px)}
+.site-hdr{position:sticky;top:0;z-index:60;border-bottom:1px solid var(--line);
+ background:color-mix(in srgb,var(--paper) 72%,transparent);-webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.site-hdr{background:var(--paper)}}
+.site-hdr .hrow{max-width:1140px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:28px}
+.site-hdr .hlogo{display:flex;align-items:center;color:var(--ink)}
+.site-hdr .hlogo svg{height:20px;width:auto;display:block}
+.site-hdr .hpages{display:flex;align-items:center;gap:24px;margin-left:auto}
+.site-hdr .hl{font-size:15px;font-weight:500;line-height:1.4;color:var(--ink-2);text-decoration:none;white-space:nowrap}
+.site-hdr .hl:hover{color:var(--ink)}
+.site-hdr .hl[aria-current]{color:var(--ink);font-weight:700}
+.site-hdr .hbtn{display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:999px;background:var(--ink);color:var(--paper);font-size:15px;font-weight:600;text-decoration:none;white-space:nowrap}
+.site-hdr .hsub{display:none}
+.site-hdr a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+@media (max-width:760px){
+ .site-hdr .hrow{height:56px;padding:0 16px;gap:12px}
+ .site-hdr .hlogo svg{height:16px}
+ .site-hdr .hpages{display:none}
+ .site-hdr .hbtn{margin-left:auto;height:36px;font-size:14px;padding:0 14px}
+ .site-hdr .hsub{display:flex;justify-content:center;align-items:center;gap:20px;height:44px;padding:0 16px}
+ .site-hdr .hsub .hl{font-size:13px}
+}
+</style>
+<header class="site-hdr">
+<div class="hrow">
+<a class="hlogo" href="/business" aria-label="어시웍스 소개"><svg aria-hidden="true" focusable="false" width="956" height="151" viewBox="0 0 956 151" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M72.0587 65.965L55.5325 7.83166C53.719 3.34699 51.0844 1.20506 46.1232 0.736513C36.5085 -0.23405 15.5685 -0.23405 5.91967 0.669578C-2.4974 1.43933 0.137211 7.79819 1.47162 13.5212C5.78281 31.7276 12.1812 49.9675 16.6292 68.2074C18.1005 71.6211 22.5485 75.1352 26.3465 75.6372H66.7552C70.8954 75.6372 73.8379 71.7549 72.6746 67.8727L72.0929 65.9985L72.0587 65.965Z" fill="#702EFF"/>
+<path d="M144.562 65.965L161.088 7.83166C162.901 3.34699 165.536 1.20506 170.497 0.736513C180.112 -0.23405 201.052 -0.23405 210.701 0.669578C219.118 1.43933 216.483 7.79819 215.149 13.5212C210.838 31.7276 204.439 49.9675 199.991 68.2074C198.52 71.6211 194.072 75.1352 190.274 75.6372H149.865C145.725 75.6372 142.782 71.7549 143.946 67.8727L144.527 65.9985L144.562 65.965Z" fill="#702EFF"/>
+<path d="M181.343 143.978L128.617 12.4502C120.371 -3.7147 96.8648 -4.28365 88.2424 11.6135L34.4895 144.045C33.5315 146.89 35.1738 149.333 38.3901 149.601C47.5599 150.371 67.1313 150.538 76.1301 149.601C82.0836 148.965 86.3606 144.748 88.9268 139.728C96.2489 125.27 101.039 104.888 107.198 89.292C107.506 88.5222 107.677 87.9533 108.122 87.9533C108.567 87.9533 108.669 88.4553 109.011 89.2251C111.886 95.8517 121.5 127.01 128.72 142.907C131.491 146.221 135.323 149.099 139.806 149.601C148.223 150.538 169.026 150.471 177.546 149.634C181.07 149.3 181.891 147.358 181.378 144.012L181.343 143.978Z" fill="#702EFF"/>
+<path d="M924.98 131.195C911.741 131.195 896.199 122.561 891.881 111.624L903.25 106.299C907.28 114.79 918.936 118.963 924.98 118.963C935.629 118.963 940.954 115.941 940.954 110.041C940.954 101.55 926.851 101.262 916.634 97.9524C904.545 94.2108 896.199 87.735 896.199 77.2297C896.199 63.5585 909.438 53.3411 924.548 53.3411C936.637 53.3411 949.876 59.817 955.201 72.3369L944.12 78.5249C939.227 69.7466 931.024 66.8684 924.548 66.5806C915.914 66.1489 910.589 70.3222 910.589 76.0785C910.589 81.403 916.202 83.9934 927.858 86.5837C944.695 90.0375 955.632 95.362 955.632 108.602C955.632 122.417 944.695 131.195 924.98 131.195Z" fill="currentColor"/>
+<path d="M834.384 129.324H820.569V28.5891H834.384V75.6468L851.94 56.3632H870.073L847.767 79.2445L881.729 129.324H864.892L838.845 90.6132L834.384 95.9377V129.324Z" fill="currentColor"/>
+<path d="M775.16 129.324H761.201V95.5059C761.201 70.3221 776.023 56.3631 799.912 56.3631V70.3221C784.946 70.3221 775.16 79.3883 775.16 95.362V129.324Z" fill="currentColor"/>
+<path d="M704.681 130.763C682.807 130.763 667.122 113.782 667.122 92.9156C667.122 71.1856 683.239 54.9241 704.681 54.9241C726.555 54.9241 742.241 71.4734 742.241 92.9156C742.241 114.358 725.98 130.763 704.681 130.763ZM704.681 116.66C718.784 116.66 728.282 106.731 728.282 92.9156C728.282 78.9566 718.496 69.027 704.681 69.027C690.866 69.027 681.224 79.1005 681.224 92.9156C681.224 106.875 690.866 116.66 704.681 116.66Z" fill="currentColor"/>
+<path d="M569.588 129.324H558.076L519.077 28.5891H534.187L563.544 105.148L590.023 28.5891H601.104L626.575 105.292L657.228 28.5891H672.338L631.756 129.324H620.387L595.347 57.0828L569.588 129.324Z" fill="currentColor"/>
+<path d="M490.252 48.1606C485.503 48.1606 481.762 44.419 481.762 39.6701C481.762 35.065 485.503 31.4673 490.252 31.4673C494.713 31.4673 498.599 35.065 498.599 39.6701C498.599 44.2751 494.857 48.1606 490.252 48.1606ZM497.16 129.324H483.201V56.3633H497.16V129.324Z" fill="currentColor"/>
+<path d="M441.991 131.195C428.752 131.195 413.21 122.561 408.893 111.624L420.261 106.299C424.291 114.79 435.947 118.963 441.991 118.963C452.64 118.963 457.965 115.941 457.965 110.041C457.965 101.55 443.862 101.262 433.645 97.9524C421.556 94.2108 413.21 87.735 413.21 77.2297C413.21 63.5585 426.449 53.3411 441.56 53.3411C453.648 53.3411 466.887 59.817 472.212 72.3369L461.131 78.5249C456.238 69.7466 448.035 66.8684 441.56 66.5806C432.925 66.1489 427.601 70.3222 427.601 76.0785C427.601 81.403 433.213 83.9934 444.869 86.5837C461.707 90.0375 472.643 95.362 472.643 108.602C472.643 122.417 461.707 131.195 441.991 131.195Z" fill="currentColor"/>
+<path d="M370.982 131.195C357.743 131.195 342.201 122.561 337.884 111.624L349.252 106.299C353.282 114.79 364.938 118.963 370.982 118.963C381.631 118.963 386.956 115.941 386.956 110.041C386.956 101.55 372.853 101.262 362.636 97.9524C350.547 94.2108 342.201 87.735 342.201 77.2297C342.201 63.5585 355.44 53.3411 370.551 53.3411C382.639 53.3411 395.878 59.817 401.203 72.3369L390.122 78.5249C385.229 69.7466 377.026 66.8684 370.551 66.5806C361.916 66.1489 356.591 70.3222 356.591 76.0785C356.591 81.403 362.204 83.9934 373.86 86.5837C390.698 90.0375 401.634 95.362 401.634 108.602C401.634 122.417 390.698 131.195 370.982 131.195Z" fill="currentColor"/>
+<path d="M239.132 129.324H223.59L275.218 25.295H281.286L332.959 129.324H317.417L299.573 93.3474H256.976L239.132 129.324ZM278.274 50.463L263.884 79.3884H292.665L278.274 50.463Z" fill="currentColor"/>
+</svg></a>
+<nav class="hpages" aria-label="가이드">
+<a class="hl" href="/" aria-current="page">구조 및 개념 가이드</a>
+<a class="hl" href="/usage">사용 가이드</a>
+<a class="hl" href="/releases">릴리즈 노트</a>
+</nav>
+<a class="hbtn" href="/business#contact">도입 문의</a>
+</div>
+<nav class="hsub" aria-label="가이드">
+<a class="hl" href="/" aria-current="page">구조 및 개념 가이드</a>
+<a class="hl" href="/usage">사용 가이드</a>
+<a class="hl" href="/releases">릴리즈 노트</a>
+</nav>
+</header>
 <div class="wrap">
 <header class="top"><p class="eyebrow"><a href="business">어시웍스 소개</a> · 구조 및 개념 가이드 · <a href="usage">사용 가이드</a></p>
 <h1>어시웍스 구조 및 개념 가이드</h1><p class="lede">어시웍스의 조직 구조(<strong>운영사, 고객사, 팀, 구성원</strong>)와 주요 용어를 설명합니다. 이어서 권한별 화면 구성과 신규 고객사의 초기 설정 순서를 안내합니다.</p></header>
@@ -529,7 +584,7 @@ footer a{color:var(--accent)}
     setOpen(false);
     if(scroll){
       var t=document.getElementById(id);
-      if(t&&t!==p)t.scrollIntoView();else if(changed||t===p)window.scrollTo(0,Math.max(0,document.querySelector('.layout').offsetTop-8));
+      if(t&&t!==p)t.scrollIntoView();else if(changed||t===p)window.scrollTo(0,Math.max(0,document.querySelector('.layout').offsetTop-8-((document.querySelector('.site-hdr')||{}).offsetHeight||0)));
     }
   }
   window.addEventListener('hashchange',function(){show(location.hash,true)});

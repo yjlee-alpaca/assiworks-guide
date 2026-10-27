@@ -23,6 +23,7 @@ FILES = {'business.html': 'business.html', 'personal.html': 'personal.html',
 # (지금 주소, 링크 글자) → 새 주소. 글자가 None 이면 글자와 상관없이 바꾼다
 LINKS = {
     ('/business', None): '/',
+    ('/business#contact', None): '/#contact',
     ('business', None): '/',
     ('/personal', None): '/personal',
     ('/usage', None): '/guide/usage',

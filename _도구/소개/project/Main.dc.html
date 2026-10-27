@@ -20,6 +20,8 @@ h1,h2,h3{text-wrap:balance}
 html{scroll-padding-top:88px}
 .hdr-pages{display:flex;align-items:center;gap:24px}
 .hdr-sub{display:none}
+.hdr-bar{background:rgba(255,255,255,0.72);-webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.hdr-bar{background:#FFFFFF}}
 @media (max-width:1100px){.nav-links{display:none}}
 @media (max-width:760px){.hdr-pages{display:none}.hdr-sub{display:flex;justify-content:center;gap:20px;padding-block:0 12px}.hdr-sub a{font-size:13px}}
 .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
@@ -143,7 +145,7 @@ a:focus-visible,button:focus-visible{outline:3px solid rgba(112,46,255,0.45);out
 <div style="width:100%;background:#FFFFFF">
 
 <!-- ═══ 상단 바 ═══ -->
-<header style="position:sticky;top:0;z-index:50;background:#FFFFFF;border-bottom:1px solid #F0F0F2">
+<header class="hdr-bar" style="position:sticky;top:0;z-index:50;border-bottom:1px solid #F0F0F2">
 <div class="wrap hdr" style="height:72px;display:flex;align-items:center;gap:40px">
 <a href="#top" aria-label="어시웍스 처음으로" style="display:flex;align-items:center"><img src="/_blob/c7f7b7731a71ce37a9e932fbd1b4dee6" alt="AssiWorks" class="hdr-logo" style="height:21px;width:auto;display:block"></a>
 <div class="seg" role="group" aria-label="소개 대상" style="display:flex;gap:2px;padding:3px;border-radius:999px;background:#F4F4F5;font-size:13px;font-weight:600;flex:none"><a href="https://assiworks-guide.vercel.app/business" aria-current="page" style="padding:5px 12px;border-radius:999px;background:#FFFFFF;color:#1B1B1B;text-decoration:none;box-shadow:0 1px 2px rgba(27,27,27,0.08)">조직</a><a href="https://assiworks-guide.vercel.app/personal" style="padding:5px 12px;border-radius:999px;color:#71717B;text-decoration:none">개인</a></div>

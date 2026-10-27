@@ -12,6 +12,8 @@
 import base64, json, os, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+import sys; sys.path.insert(0, os.path.join(HERE, '..', '공통'))
+from site_header import fill as site_header
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..'))
 
 def new(m):
@@ -24,6 +26,7 @@ for src, imgs, out in [('usage_src.html', 'usage_imgs.json', 'usage.html'),
     old = json.load(open(os.path.join(HERE, imgs)))
     t = re.sub(r'@@NEW:([a-z0-9-]+)@@', new, t)
     t = re.sub(r'@@IMG(\d+)@@', lambda m: old[int(m.group(1))], t)
+    t = site_header(t, '1140px')
     assert '@@' not in t, out + ' 에 채우지 못한 자리가 남았다'
     open(os.path.join(ROOT, out), 'w', encoding='utf-8').write(t)
     v = re.sub(r'data:image/[a-z]+;base64,[A-Za-z0-9+/=]+', 'IMG', t)
