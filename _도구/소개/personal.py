@@ -106,9 +106,11 @@ assert not left, left
 # 마무리
 rep('팀 업무 하나로<br>먼저 시작해 보세요', '내 업무 하나로<br>먼저 시작해 보세요')
 rep('매주 반복되는 업무 하나를 알려 주시면, 어떤 유닛으로 나눠 만들 수 있는지 함께 살펴보겠습니다.', '매주 반복하는 일을 하나 골라 유닛으로 만들어 보세요. 처음부터 따라 하는 순서는 사용 가이드에 있습니다.')
-rep('<a class="btn btn-p" href="#contact" style="margin-top:8px">도입 상담 신청 <span aria-hidden="true">→</span></a>',
+rep('<a class="btn btn-p" href="mailto:contact@aifactory.page" style="margin-top:8px">도입 상담 신청 <span aria-hidden="true">→</span></a>',
     '<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px"><a class="btn btn-p" href="https://assiworks.aifactory.space">시작하기 <span aria-hidden="true">→</span></a><a class="btn btn-g" href="https://assiworks-guide.vercel.app/usage" style="background:#FFFFFF">사용 가이드 보기</a></div>')
-t = re.sub(r'\n<span style="font-size:14px;color:#71717B">문의 메일 .*?</span>', '', t, count=1)
+# 문의 메일: 개인용은 사용 문의만 남긴다
+t, n = re.subn(r'<span>도입 문의 <a href="mailto:contact@aifactory.page"[^>]*>contact@aifactory.page</a></span>', '', t)
+assert n == 1, n
 assert '문의 메일' not in t and '업무1팀' not in t and '도입' not in t, [w for w in ('문의 메일','업무1팀','도입') if w in t]
 open(out, 'w', encoding='utf-8').write(t)
 print('ok', len(t))
